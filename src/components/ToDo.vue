@@ -4,7 +4,7 @@
     <button @click="addToDo" type="submit">add todos</button>
         <fieldset>
             <div v-for="toDo in toDos" class="todo" v-if="!toDo.done">
-                <input @click="toggleDone(toDo.done)" type="checkbox" id="todo" name="interest" value="todo">
+                <input @click="toggleDone(toDo)" type="checkbox" id="todo" name="interest" value="todo">
                 <label for="todo" v-text="toDo.description"></label>
                 <button v-on:click="deleteTodo(toDo)">Delete</button>
             </div>
@@ -46,8 +46,13 @@ export default {
           this.toDos.splice(index,1);
       },
         toggleDone(toDo){
-          this.toDo = !toDo;
-          console.log(this.toDo);
+          if(toDo.done){
+              toDo.done = false;
+          }
+          else {
+             toDo.done = true;
+          }
+          console.log(toDo);
         }
     }
 
